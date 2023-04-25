@@ -4,9 +4,9 @@
 War-card-game is an application that allows you to play the game of [War](https://en.wikipedia.org/wiki/War_(card_game)). The repository contains both a backend and a frontend implementation, and provides a Dockerfile for easy deployment on any machine. The project is built using the Express.js and React frameworks, and uses a MySQL database to store game data.
 
 The backend RESTful service has three endpoints:
-	* `POST /start`: An endpoint to start a game. Two simulated players will play out the game. It will respond with the game result and an array of all cards played at each round. 
-	* `GET /lifetime-wins`: An endpoint to get lifetime wins for each player stored in a database.
-  * `DELETE /clear`: An endpoint to erase all game records and players' scores.
+* `POST /start`: An endpoint to start a game. Two simulated players will play out the game. It will respond with the game result and an array of all cards played at each round. 
+* `GET /lifetime-wins`: An endpoint to get lifetime wins for each player stored in a database.
+* `DELETE /clear`: An endpoint to erase all game records and players' scores.
 
 ## Getting Started
 Currently, the deployment involves two steps. 
@@ -17,18 +17,19 @@ Please follow the following instructions for each step.
 
 ### Deploying the Backend Server with Docker
 To deploy the backend server with Docker, follow these steps:
-1. Install Docker on your machine if you haven't already.
+1. Install Docker on your machine if you haven't already. Make sure the Docker daemon is running (i.e. run Docker Desktop).
 2. Clone this repository to your local machine.
 3. Navigate to the `war-card-game` directory and run `docker-compose up` to start the backend server and database.
 6. The server should now be listening on port 6868. You can test that it's working by navigating to `http://localhost:6868` in your web browser. You should see a message that says "This is a War card game server!".
-7. Now you can access the API endpoints by:
-  - http://localhost:6868/start
-  - http://localhost:6868/lifetime-wins
-  - http://localhost:6868/clear
+7. Now you can access the API endpoints by the followings (all with empty request argument):
+  - A GET request to http://localhost:6868/start
+  - A POST request to http://localhost:6868/lifetime-wins
+  - A DELETE request to http://localhost:6868/clear
+
 
 ### Running the Frontend Client with Docker
 To run the frontend client with Docker, follow these steps:
-1. Ensure you have Docker installed on your machine. Ensure your backend docker container is running on port http://localhost:6868.
+1. Ensure that you have done the previous step and your backend docker container is running on port http://localhost:6868.
 2. Navigate to the `client` directory and build the Docker image by running `docker build -t war-card-game-client .`.
 4. From the `client` directory, run the Docker container by executing `docker run -p 3000:3000 war-card-game-client`.
 5. The client should now be listening on port 3000. You can test that it's working by navigating to `http://localhost:3000` in your web browser.
