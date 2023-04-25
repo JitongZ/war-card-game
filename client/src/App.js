@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 const util = require('./utils/util');
 
-
 function App() {
   const [roundInfo, setRoundInfo] = useState([]);
   const [player1Deck, setPlayer1Deck] = useState([]);
@@ -18,10 +17,13 @@ function App() {
   const [showNextButton, setShowNextButton] = useState(false);
   
 
+
   const handleStartGame = async () => {
     // Call the backend to start a new game and set the state of the component
     // based on the response
-    const response = await axios.post(`http://${process.env.SERVER_HOST || 'localhost'}:${process.env.SERVER_PORT || 'localhost'}/start`);
+    console.log(process.env.SERVER_HOST);
+
+    const response = await axios.post(`http://${process.env.SERVER_HOST || 'localhost'}:${process.env.SERVER_PORT || '6868'}/start`);
     // Update state with the decks returned by the API
     setRoundInfo([...response.data.rounds]);
     setPlayer1Deck([...response.data.deck1]);
@@ -36,7 +38,7 @@ function App() {
     setPrevWarWinner("");
     setShowNextButton(true);
 
-    const getResponse = await axios.get(`http://${process.env.SERVER_HOST || 'localhost'}:${process.env.SERVER_PORT || 'localhost'}/lifetime-wins`);
+    const getResponse = await axios.get(`http://${process.env.SERVER_HOST || 'localhost'}:${process.env.SERVER_PORT || '6868'}/lifetime-wins`);
     setPlayer1Score(getResponse.data[0].wins);
     setPlayer2Score(getResponse.data[1].wins);
   };
@@ -75,8 +77,8 @@ function App() {
 
   const handleClearHistory = async() => {
     // Call the backend to clear the history and reset the state of the component
-    await axios.delete(`http://${process.env.SERVER_HOST || 'localhost'}:${process.env.SERVER_PORT || 'localhost'}/clear`);
-    const getResponse = await axios.get(`http://${process.env.SERVER_HOST || 'localhost'}:${process.env.SERVER_PORT || 'localhost'}/lifetime-wins`);
+    await axios.delete(`http://${process.env.SERVER_HOST || 'localhost'}:${process.env.SERVER_PORT || '6868'}/clear`);
+    const getResponse = await axios.get(`http://${process.env.SERVER_HOST || 'localhost'}:${process.env.SERVER_PORT || '6868'}/lifetime-wins`);
     setPlayer1Score(getResponse.data[0].wins);
     setPlayer2Score(getResponse.data[1].wins);
     setRoundInfo([]);
