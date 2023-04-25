@@ -57,7 +57,7 @@ The backend server uses Jest and Supertest for testing. To run the tests, naviga
 ### Future Improvements
 Here are some potential improvements that could be made to this application in the future:
 - Use Swagger for API documentation
-- Implement continuous integration and deployment using a tool like Travis CI
+- Implement continuous integration and deployment.
 - Deploy the application online using Heroku, or a cloud provider like AWS or Google Cloud Platform
 - Add more features to the game, such as multiplayer mode or different game modes
 - Improve the frontend design and performance
