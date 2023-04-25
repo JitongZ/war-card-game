@@ -16,7 +16,7 @@ services:
     depends_on:
       - db
     build: ./server
-    restart: on-failure:10
+    restart: on-failure:20
     ports:
       - 6868:8080
     environment:
