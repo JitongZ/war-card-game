@@ -60,5 +60,6 @@ Here are some potential improvements that could be made to this application in t
 - Implement continuous integration and deployment using a tool like Travis CI
 - Deploy the application online using Heroku, or a cloud provider like AWS or Google Cloud Platform
 - Add more features to the game, such as multiplayer mode or different game modes
-- Improve the frontend design and user experience
+- Improve the frontend design and performance
 - Add more tests to improve code coverage and ensure the application is functioning correctly
+- Remove unneccessary packages for building the Docker containers.
