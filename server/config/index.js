@@ -1,14 +1,11 @@
-// const app = require('./express');
-// const logger = require('./logger');
-// const db = require('./db');
+const expressApp = require('./express');
+const db = require('./db');
+const logger = require('./logger');
 
-// // Start the server
-// const PORT = process.env.PORT || 3000;
-// db.sync()
-//   .then(() => {
-//     console.log('Connected to the database');
-//     app.listen(PORT, () => {
-//       console.log(`Server listening on port ${PORT}`);
-//     });
-//   })
-//   .catch(error => console.error(error));
+module.exports = {
+  expressApp,
+  db,
+  logger
+};
+
+

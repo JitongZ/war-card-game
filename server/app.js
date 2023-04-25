@@ -1,20 +1,15 @@
 require('dotenv').config();
-const app = require('./config/express');
-// const logger = require('./config/logger');
-const db = require('./config/db');
+const {expressApp, logger} = require('./config');
 
 // Start the server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
-// Define a route for the root URL
-app.get('/', (req, res) => {
-    res.send('Hello, world!');
+// Log a message
+logger.info('Server started');
+
+var server = expressApp.listen(PORT, () => {
+  logger.info(`Server listening on port ${PORT}`);
 });
 
-
-console.log('Connected to the database');
-    app.listen(PORT, () => {
-      console.log(`Server listening on port ${PORT}`);
-    });
-
+module.exports = { server };
 
