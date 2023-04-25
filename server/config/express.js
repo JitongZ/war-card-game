@@ -16,6 +16,11 @@ app.use(morgan('combined'));
 // Register the routes
 app.use(router);
 
+// Process uncaughtException
+process.on('uncaughtException', function (err) {
+  console.log(err);
+});
+
 // Define a route for the root URL
 app.get('/', (req, res) => {
   res.send('This is a War card game server!');

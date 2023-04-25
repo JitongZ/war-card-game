@@ -1,24 +1,33 @@
 require('dotenv').config();
 const mysql = require('mysql2/promise');
 const { Sequelize } = require('sequelize');
+const logger = require('./logger');
 const db = {};
 module.exports = db;
 
 initialize();
 async function initialize() {
-  // create db if it doesn't already exist
-  const connection = await mysql.createConnection({
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASS
-  });
-  await connection.query(`CREATE DATABASE IF NOT EXISTS ${process.env.DB_NAME};`); // potentially avoid magic name like war
+  try {
+    // create db if it doesn't already exist
+    logger.info(`Creating connection with db: ${process.env.DB_HOST}, ${process.env.DB_PORT}, ${process.env.DB_USER}, ${process.env.DB_PASS}`)
+    const connection = await mysql.createConnection({
+      host: process.env.DB_HOST,
+      port: process.env.DB_PORT,
+      // host: '/var/run/mysqld/mysqlx.sock',
+      user: process.env.DB_USER,
+      password: process.env.DB_PASS
+    });
+    await connection.query(`CREATE DATABASE IF NOT EXISTS ${process.env.DB_NAME};`); // potentially avoid magic name like war
+  } catch (err) {
+    console.error(err);
+    process.exit(1);
+  }
 
   // connect to db
   const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
+    // host: '/var/run/mysqld/mysqlx.sock',
     dialect: 'mysql',
     logging: false
   });

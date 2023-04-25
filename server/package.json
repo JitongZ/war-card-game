@@ -4,7 +4,7 @@
   "description": "A RESTful service for the War card game app ",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node --unhandled-rejections=strict app.js",
     "lint": "eslint \"./**/*.js\" --fix --quiet",
     "test": "jest"
   },
