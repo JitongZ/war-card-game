@@ -28,6 +28,15 @@ services:
       - NODE_DOCKER_PORT=8080
     stdin_open: true
     tty: true
+  # client:
+  #   build: ./client
+  #   restart: on-failure:10
+  #   ports:
+  #     - 3000:3002
+  #   environment:
+  #     - HOST=server
+  #     - PORT=8080
+  #     - CLIENT_PORT=3002
 
 volumes: 
   db:
