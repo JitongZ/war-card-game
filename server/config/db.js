@@ -9,13 +9,13 @@ initialize();
 async function initialize() {
   try {
     // create db if it doesn't already exist
-    logger.info(`Creating connection with db: ${process.env.DB_HOST}, ${process.env.DB_PORT}, ${process.env.DB_USER}, ${process.env.DB_PASS}`);
+    logger.info(`Creating connection with db: ${process.env.DB_HOST}, ${process.env.DB_PORT}, ${process.env.DB_USER}, ${process.env.DB_PASSWORD}`);
     const connection = await mysql.createConnection({
       host: process.env.DB_HOST,
       port: process.env.DB_PORT,
       // host: '/var/run/mysqld/mysqlx.sock',
       user: process.env.DB_USER,
-      password: process.env.DB_PASS
+      password: process.env.DB_PASSWORD
     });
     await connection.query(`CREATE DATABASE IF NOT EXISTS ${process.env.DB_NAME};`); // potentially avoid magic name like war
   } catch (err) {
@@ -24,7 +24,7 @@ async function initialize() {
   }
 
   // connect to db
-  const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASS, {
+  const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
     // host: '/var/run/mysqld/mysqlx.sock',
