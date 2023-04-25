@@ -9,7 +9,7 @@ initialize();
 async function initialize() {
   try {
     // create db if it doesn't already exist
-    logger.info(`Creating connection with db: ${process.env.DB_HOST}, ${process.env.DB_PORT}, ${process.env.DB_USER}, ${process.env.DB_PASS}`)
+    logger.info(`Creating connection with db: ${process.env.DB_HOST}, ${process.env.DB_PORT}, ${process.env.DB_USER}, ${process.env.DB_PASS}`);
     const connection = await mysql.createConnection({
       host: process.env.DB_HOST,
       port: process.env.DB_PORT,
